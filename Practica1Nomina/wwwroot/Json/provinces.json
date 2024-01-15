@@ -1,0 +1,157 @@
+/*[
+  {
+    "province_id": 1,
+    "province": "Distrito Nacional",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 21,
+    "province": "San Pedro de Macorís",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 22,
+    "province": "La Romana",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 23,
+    "province": "La Altagracia",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 24,
+    "province": "El Seibo",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 25,
+    "province": "Hato Mayor",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 31,
+    "province": "Duarte",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 32,
+    "province": "Samaná",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 33,
+    "province": "Maria Trinidad Sánchez",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 34,
+    "province": "Salcedo",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 41,
+    "province": "La Vega",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 42,
+    "province": "Monseñor Nouel",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 43,
+    "province": "Sánchez Ramirez",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 51,
+    "province": "Santiago",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 56,
+    "province": "Espaillat",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 57,
+    "province": "Puerto Plata",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 61,
+    "province": "Valverde",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 62,
+    "province": "Monte Cristi",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 63,
+    "province": "Dajabónn",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 64,
+    "province": "Santiago Rodríguez",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 71,
+    "province": "Azua",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 72,
+    "province": "San Juan de la Maguana",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 73,
+    "province": "Elías Piña",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 81,
+    "province": "Barahona",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 82,
+    "province": "Bahoruco",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 83,
+    "province": "Independencia",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 84,
+    "province": "Perdenales",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 91,
+    "province": "San Cristóbal",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 92,
+    "province": "Monte Plata",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 93,
+    "province": "San José de Ocoa",
+    "codeCountry": "DO"
+  },
+  {
+    "province_id": 94,
+    "province": "Peravia",
+    "codeCountry": "DO"
+  }
+]*/

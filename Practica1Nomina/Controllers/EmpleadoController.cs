@@ -27,7 +27,7 @@ namespace Practica1Nomina.Controllers
         }
 
         // GET: EmpleadoController/Create
-        public ActionResult Create()
+        public ActionResult Crear()
         {
             return View();
         }
@@ -35,7 +35,7 @@ namespace Practica1Nomina.Controllers
         // POST: EmpleadoController/Create
         [HttpPost]
          [ValidateAntiForgeryToken]
-        public ActionResult Create(Empleado empleado)
+        public ActionResult Crear(Empleado empleado)
         {
             empleado.Id = empleados.Count + 1;
             empleados.Add(empleado);
@@ -71,10 +71,10 @@ namespace Practica1Nomina.Controllers
             empleadoExiste.FechaNacimiento = empleado.FechaNacimiento;
             empleadoExiste.Sexo = empleado.Sexo;
             empleadoExiste.Salario = empleado.Salario;
-            empleadoExiste.Pais = empleado.Pais;
-            empleadoExiste.Provincia = empleado.Provincia;
-            empleadoExiste.Municipio = empleado.Municipio;
-            empleadoExiste.Barrios = empleado.Barrios;
+            empleadoExiste.Direccion.Pais = empleado.Direccion.Pais;
+            empleadoExiste.Direccion.Provincia = empleado.Direccion.Provincia;
+            empleadoExiste.Direccion.Municipio = empleado.Direccion.Municipio;
+            empleadoExiste.Direccion.Sector = empleado.Direccion.Sector;
             empleadoExiste.Licencia = empleado.Licencia;
 
             return RedirectToAction("Index");

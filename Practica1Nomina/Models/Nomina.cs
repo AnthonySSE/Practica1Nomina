@@ -14,6 +14,7 @@ d.	ISR
 e.	Fecha Creación
 f.	Fecha Nomina
          */
+        public int Id { get; set; }
         [Display(Name = "Sueldo Bruto")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal SueldoBruto { get; set; }
