@@ -32,8 +32,10 @@ j.	Si posee licencia
         public Genero Sexo { get; set; }
         [Column(TypeName="decimal(18,2)")]
         public decimal Salario { get; set; }
-        public Direccion Direccion { get; set; } = null!;
-        [Display(Name = "¿Posee Licencia?")]
+        public string? Pais { get; set; }
+        public int? Provincia { get; set; }
+        public int? Municipio { get; set; }
+        public long? Sector { get; set; }
         public bool Licencia { get; set; }
     }
 }

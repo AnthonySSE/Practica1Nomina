@@ -71,10 +71,10 @@ namespace Practica1Nomina.Controllers
             empleadoExiste.FechaNacimiento = empleado.FechaNacimiento;
             empleadoExiste.Sexo = empleado.Sexo;
             empleadoExiste.Salario = empleado.Salario;
-            empleadoExiste.Direccion.Pais = empleado.Direccion.Pais;
-            empleadoExiste.Direccion.Provincia = empleado.Direccion.Provincia;
-            empleadoExiste.Direccion.Municipio = empleado.Direccion.Municipio;
-            empleadoExiste.Direccion.Sector = empleado.Direccion.Sector;
+           empleadoExiste.Pais = empleado.Pais;
+            empleadoExiste.Provincia = empleado.Provincia;
+            empleadoExiste.Municipio = empleado.Municipio;
+            empleadoExiste.Sector = empleado.Sector;
             empleadoExiste.Licencia = empleado.Licencia;
 
             return RedirectToAction("Index");
