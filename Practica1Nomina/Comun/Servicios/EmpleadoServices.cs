@@ -32,7 +32,7 @@ namespace Practica1Nomina.Comun.Servicios
 
         
 
-        #region Archivos JSON
+        /*JSON*/
         public async Task<IEnumerable<Municipio>> ObtenerArchivoDeMunicipio()
         {
             string folder = Path.Combine(hostEnvironment.ContentRootPath, "wwwroot/json/");
@@ -121,9 +121,9 @@ namespace Practica1Nomina.Comun.Servicios
             }
             return listItems;
         }
-        #endregion
+        
 
-        #region Metodos CRUD
+        /*CRUD*/
 
         private int ObtenerIdEmpleado()
         {
@@ -186,6 +186,6 @@ namespace Practica1Nomina.Comun.Servicios
                 _empleadoList.Remove(empleadoExistente);
             }
         }
-        #endregion
+        
     }
 }

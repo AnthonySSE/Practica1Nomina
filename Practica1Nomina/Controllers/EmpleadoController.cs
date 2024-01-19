@@ -1,11 +1,17 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Practica1Nomina.Comun.Interfaz;
 using Practica1Nomina.Models;
 
 namespace Practica1Nomina.Controllers
 {
     public class EmpleadoController : Controller
     {
+        private readonly IEmpleadoServices empleadoServices;
+        private readonly IMapper mapper;
+        private readonly ILogger<EmpleadoController> logger;
+
         //Primero crear un listado de empleados.
         public static List<Empleado> empleados = new List<Empleado>();
         // GET: EmpleadoController

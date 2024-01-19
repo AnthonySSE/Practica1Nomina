@@ -1,7 +1,7 @@
-﻿using ProyectoNomina.Common.Interfaz;
-using ProyectoNomina.Models;
+﻿using Practica1Nomina.Comun.Interfaz;
+using Practica1Nomina.Models;
 
-namespace ProyectoNomina.Common.Servicios
+namespace Practica1Nomina.Comun.Servicios
 {
     public class NominaServices : INominaServices
     {
@@ -11,13 +11,13 @@ namespace ProyectoNomina.Common.Servicios
         {
             _listNominas = new List<Nomina>();
         }
-        public async Task AddNomina(Nomina nomina)
+        public async Task AgregarNomina(Nomina nomina)
         {
             nomina.Id = _listNominas.Count + 1;
             _listNominas.Add(nomina);
         }
 
-        public async Task DeleteNominaById(int id)
+        public async Task EliminarNomina(int id)
         {
             var nominaExistente = _listNominas.FirstOrDefault(x => x.Id == id);
             if(nominaExistente !=null)
@@ -26,18 +26,18 @@ namespace ProyectoNomina.Common.Servicios
             }
         }
 
-        public async Task<Nomina> GetNominaById(int id)
+        public async Task<Nomina> ObtenerNominaPorId(int id)
         {
             return _listNominas.FirstOrDefault(x=>x.Id == id);
 
         }
 
-        public async Task<IEnumerable<Nomina>> GetNominas()
+        public async Task<IEnumerable<Nomina>> ObtenerNominas()
         {
             return _listNominas;
         }
 
-        public async Task UpdateNomina(Nomina nomina)
+        public async Task ActualizarNomina(Nomina nomina)
         {
            var nominaActualizada = _listNominas.FirstOrDefault(x=>x.Id==nomina.Id);
             if(nominaActualizada != null)
@@ -45,7 +45,7 @@ namespace ProyectoNomina.Common.Servicios
                 nominaActualizada.ISR = nomina.ISR;
                 nominaActualizada.SueldoNeto = nomina.SueldoNeto;
                 nominaActualizada.SueldoBruto = nomina.SueldoBruto;
-                nominaActualizada.Tss = nomina.Tss;
+                nominaActualizada.TSS = nomina.TSS;
                 nominaActualizada.FechaCreacion = nomina.FechaCreacion;
                 nominaActualizada.FechaNomina = nomina.FechaNomina;
 

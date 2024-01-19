@@ -1,7 +1,7 @@
-﻿using ProyectoNomina.Servicios.Interfaz;
+﻿using Practica1Nomina.Comun.Interfaz;
 using System.Text.Json;
 
-namespace ProyectoNomina.Common.Servicios
+namespace Practica1Nomina.Comun.Servicios
 {
     public class ReadJsonFileOptions<T> : IReadJsonFileOptions<T> where T : class
     {

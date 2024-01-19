@@ -1,6 +1,6 @@
 ﻿using Practica1Nomina.Models;
 
-namespace ProyectoNomina.Common.Interfaz
+namespace Practica1Nomina.Comun.Interfaz
 {
     public interface INominaServices
     {

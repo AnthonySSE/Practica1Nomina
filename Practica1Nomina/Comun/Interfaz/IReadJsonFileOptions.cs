@@ -1,4 +1,4 @@
-﻿namespace Practica1Nomina.Servicios.Interfaz
+﻿namespace Practica1Nomina.Comun.Interfaz
 {
     public interface IReadJsonFileOptions<T> where T : class
     {
