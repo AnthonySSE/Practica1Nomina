@@ -5,9 +5,6 @@ using Practica1Nomina;
 using Practica1Nomina.Comun.Interfaz;
 using Practica1Nomina.Comun.Servicios;
 using Practica1Nomina.Models;
-using Practica1Nomina.Servicios.Interfaz;
-using ProyectoNomina.Common.Interfaz;
-using ProyectoNomina.Common.Servicios;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +14,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IEmpleadoServices, EmpleadoServices>();
 builder.Services.AddScoped<INominaServices, NominaServices>();
 builder.Services.AddScoped(typeof(IReadJsonFileOptions<>), typeof(ReadJsonFileOptions<>));
+builder.Services.AddAutoMapper(typeof(Program));
 
 //Configure Services
 

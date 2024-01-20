@@ -47,45 +47,28 @@
                 <input asp-for="Salario" class="form-control" />
                 <span asp-validation-for="Salario" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Direccion.Pais"></label>
-                <select asp-for="Direccion.Pais" class="form-control">
-                    @foreach (var pais in Model.Direccion.Pais)
-                    {
-                        <option value="@pais">@pais</option>
-                    }
-                </select>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label asp-for="Pais">Pais</label>
+                    <select asp-for="Pais" asp-items="ViewBag.Pais" class="form-select"></select>
+                    <span asp-validation-for="Pais" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-3">
+                    <label asp-for="Provincia">Provincia</label>
+                    <select asp-for="Provincia" asp-items="ViewBag.Provincia" class="form-select"></select>
+                    <span asp-validation-for="Provincia" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-3">
+                    <label asp-for="Municipio">Municipio</label>
+                    <select asp-for="Municipio" asp-items="ViewBag.Municipio" class="form-select"></select>
+                    <span asp-validation-for="Municipio" class="text-danger"></span>
+                </div><div class="form-group col-md-3">
+                    <label asp-for="Sector">Sector</label>
+                    <select asp-for="Sector" asp-items="ViewBag.Sector" class="form-select"></select>
+                    <span asp-validation-for="Sector" class="text-danger"></span>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label asp-for="Direccion.Provincia"></label>
-                <select asp-for="Direccion.Provincia" class="form-control">
-                    @foreach (var provincia in Model.Direccion.Provincia)
-                    {
-                        <option value="@provincia">@provincia</option>
-                    }
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Direccion.Municipio"></label>
-                <select asp-for="Direccion.Municipio" class="form-control">
-                    @foreach (var municipio in Model.Direccion.Municipio)
-                    {
-                        <option value="@municipio">@municipio</option>
-                    }
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Direccion.Sector"></label>
-                <select asp-for="Direccion.Sector" class="form-control">
-                    @foreach (var barrio in Model.Direccion.Sector)
-                    {
-                        <option value="@barrio">@barrio</option>
-                    }
-                </select>
-            </div>
+            <br />
 
             <div class="form-group form-check">
                 <label class="form-check-label">

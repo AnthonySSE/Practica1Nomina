@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Practica1Nomina.Comun.Interfaz;
 using Practica1Nomina.Models;
-using Practica1Nomina.Servicios.Interfaz;
+using Practica1Nomina.Comun.Servicios;
 using Practica1Nomina.ViewModels;
 
 namespace Practica1Nomina.Comun.Servicios
@@ -30,15 +30,25 @@ namespace Practica1Nomina.Comun.Servicios
             _empleadoList = new List<Empleado>();
         }
 
-        
+
 
         /*JSON*/
         public async Task<IEnumerable<Municipio>> ObtenerArchivoDeMunicipio()
         {
-            string folder = Path.Combine(hostEnvironment.ContentRootPath, "wwwroot/json/");
-            string fileName = "municipalities.json";
-            return await readJsonFileOptionsMunicipio.WriteJsonFileOptions(folder, fileName);
+            try
+            {
+                string folder = Path.Combine(hostEnvironment.ContentRootPath, "wwwroot/json/");
+                string fileName = "municipalities.json";
+                return await readJsonFileOptionsMunicipio.WriteJsonFileOptions(folder, fileName);
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción (puedes imprimir el mensaje en la consola o el registro)
+                Console.WriteLine($"Error al obtener el archivo de municipios: {ex.Message}");
+                throw;
+            }
         }
+
 
         public async Task<IEnumerable<SelectListItem>> ObtenerListaDeMunicipios(int defaultValue = 0)
         {

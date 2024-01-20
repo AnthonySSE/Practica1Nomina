@@ -12,104 +12,144 @@ namespace Practica1Nomina.Controllers
         private readonly IMapper mapper;
         private readonly ILogger<EmpleadoController> logger;
 
-        //Primero crear un listado de empleados.
-        public static List<Empleado> empleados = new List<Empleado>();
-        // GET: EmpleadoController
-        public ActionResult Index()
+
+        public EmpleadoController(IEmpleadoServices empleadoServices,
+            IMapper mapper,
+            ILogger<EmpleadoController> logger)
         {
-            return View(empleados);
+            this.empleadoServices = empleadoServices;
+            this.mapper = mapper;
+            this.logger = logger;
         }
 
-        // GET: EmpleadoController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Index()
         {
-            var empleado = empleados.FirstOrDefault(e => e.Id == id);
-            if (empleado is null)
-            {
-                return NotFound();
-            }
+            ViewBag.Empleados = await empleadoServices.ObtenerEmpleados();
 
-            return View(empleados);
-        }
-
-        // GET: EmpleadoController/Create
-        public ActionResult Crear()
-        {
             return View();
         }
 
-        // POST: EmpleadoController/Create
-        [HttpPost]
-         [ValidateAntiForgeryToken]
-        public ActionResult Crear(Empleado empleado)
+        public async Task<IActionResult> Crear(int id = 0)
         {
-            empleado.Id = empleados.Count + 1;
-            empleados.Add(empleado);
-            return RedirectToAction("Index");
+            if (id == 0)
+            {
+                ViewBag.Municipio = await empleadoServices.ObtenerListaDeMunicipios(0);
+                ViewBag.Pais = await empleadoServices.ObtenerListaDePaises("DO");
+                ViewBag.Provincia = await empleadoServices.ObtenerListaDeProvincias(0);
+                ViewBag.Sector = await empleadoServices.ObtenerListaDeSectores(0);
+                return View(new Empleado());
+            }
+            else
+            {
+                var empleadoExistente = await empleadoServices.ObtenerEmpleadosPorId(id);
+                if (empleadoExistente == null)
+                {
+                    return NotFound();
+                }
+                // Asegúrate de que estás utilizando el tipo de modelo correcto en la vista
+                return View(empleadoExistente);
+            }
         }
 
-        // GET: EmpleadoController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            var empleado = empleados.FirstOrDefault(e => e.Id == id);
 
-            if (empleado is null)
+        [HttpPost]
+        public async Task<IActionResult> Crear(int id, Empleado formularioEmpleados)
+        {
+            if (ModelState.IsValid)
+            {
+
+                if (id == 0)
+                {
+                    var resultado = mapper.Map<Empleado>(formularioEmpleados);
+                    await empleadoServices.AgregarEmpleado(resultado);
+                }
+                else
+                {
+                    var resultado = mapper.Map<Empleado>(formularioEmpleados);
+                    await empleadoServices.ActualizarEmpleado(resultado);
+
+                }
+                return View("Index");
+               /* return Json(new { isValid = true, html = Helper.Helper.RenderRazorViewToString(this, "Index", empleadoServices.ObtenerEmpleados()) });*/
+            }
+            return Json(new { isValid = false, html = Helper.Helper.RenderRazorViewToString(this, "Index", formularioEmpleados) });
+
+        }
+
+       /* [HttpPost]
+        public async Task<IActionResult> Crear(Empleado formularioEmpleados)
+        {
+            if (ModelState.IsValid)
+            {
+                var resultado = mapper.Map<Empleado>(formularioEmpleados);
+                await empleadoServices.AgregarEmpleado(resultado);
+
+                return RedirectToAction("Index");
+            }
+
+
+            return Json(new { sucess = true, message = "Empleado creado existosamente" });
+        }
+       */
+        public async Task<IActionResult> Editar(int id)
+        {
+            var empleado = await empleadoServices.ObtenerEmpleadosPorId(id);
+            if (empleado == null)
+            {
+                return View("Error");
+            }
+            ViewBag.Municipio = await empleadoServices.ObtenerListaDeMunicipios(0);
+            ViewBag.Pais = await empleadoServices.ObtenerListaDePaises("DO");
+            ViewBag.Provincia = await empleadoServices.ObtenerListaDeProvincias(0);
+            ViewBag.Sector = await empleadoServices.ObtenerListaDeSectores(0);
+            var empleadoDTO = mapper.Map<Empleado>(empleado);
+            return View(empleadoDTO);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Editar(int id, Empleado formularioEmpleados)
+        {
+            if (id != formularioEmpleados.Id)
             {
                 return NotFound();
             }
-            return View();
-        }
 
-        // POST: EmpleadoController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Empleado empleado)
-        {
-            var empleadoExiste = empleados.FirstOrDefault(e => e.Id == id);
-            if (empleadoExiste is null)
+            if (ModelState.IsValid)
             {
-                return NotFound();
+                var empleadoActualizado = mapper.Map<Empleado>(formularioEmpleados);
+                await empleadoServices.ActualizarEmpleado(empleadoActualizado);
+                return RedirectToAction("Index");
             }
 
-            empleadoExiste.Nombre = empleado.Nombre;
-            empleadoExiste.Apellido = empleado.Apellido;
-            empleadoExiste.Edad = empleado.Edad;
-            empleadoExiste.FechaNacimiento = empleado.FechaNacimiento;
-            empleadoExiste.Sexo = empleado.Sexo;
-            empleadoExiste.Salario = empleado.Salario;
-           empleadoExiste.Pais = empleado.Pais;
-            empleadoExiste.Provincia = empleado.Provincia;
-            empleadoExiste.Municipio = empleado.Municipio;
-            empleadoExiste.Sector = empleado.Sector;
-            empleadoExiste.Licencia = empleado.Licencia;
+            ViewBag.Municipio = await empleadoServices.ObtenerListaDeMunicipios(0);
+            ViewBag.Pais = await empleadoServices.ObtenerListaDePaises("DO");
+            ViewBag.Provincia = await empleadoServices.ObtenerListaDeProvincias(0);
+            ViewBag.Sector = await empleadoServices.ObtenerListaDeSectores(0);
 
-            return RedirectToAction("Index");
+            return View(formularioEmpleados);
         }
 
-        // GET: EmpleadoController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Eliminar(int id)
         {
-            var empleado = empleados.FirstOrDefault(e => e.Id == id);
+            var empleado = await empleadoServices.ObtenerEmpleadosPorId(id);
             if (empleado == null)
             {
                 return NotFound();
             }
+
             return View(empleado);
         }
 
-        // POST: EmpleadoController/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Eliminar")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Empleado empleado)
+        public async Task<IActionResult> ConfirmarEliminar(int id)
         {
-            var empleadoExiste = empleados.FirstOrDefault(e => e.Id == id);
-            if (empleadoExiste is null)
-            {
-                return NotFound();
-            }
-
-            empleados.Remove(empleadoExiste);
+            await empleadoServices.EliminarEmpleado(id);
             return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> MostrarEmpleadoModal()
+        {
+            return PartialView("_formularioCrearEmpleado");
         }
     }
 }
